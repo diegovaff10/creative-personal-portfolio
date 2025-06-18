@@ -60,7 +60,7 @@ cd portfolio-diego-vaeff
 ## 📸 Capturas / Screenshots
 
 ![Modo DEV](/img/dev-hero-section.png)
-![Modo ART](https://via.placeholder.com/800x400.png?text=Art+Mod)
+![Modo ART](/img/art-hero-section.png)
 
 ---
 
