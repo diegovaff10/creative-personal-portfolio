@@ -1,5 +1,5 @@
 
-# 🎨👨‍💻 Diego Väff – Artista y Programador / Artist & Developer
+# 🎨👨‍💻 Diego Väff – Diseñador y Programador / Artist & Developer
 
 Este sitio web es un **portfolio interactivo** que representa la dualidad creativa de **Diego Väff**: artista visual, diseñador UX y programador front-end. El usuario puede alternar entre dos modos (DEV y ART) que cambian el contenido, el diseño visual y la narrativa, fusionando tecnología y sensibilidad artística.
 
