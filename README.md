@@ -72,10 +72,3 @@ Multidisciplinary creator from Mendoza, Argentina
 
 🔗 [Portfolio Behance](https://www.behance.net/diegovaeff)  
 📧 contacto@diegoart.dev
-
----
-
-## 🪪 Licencia / License
-
-Publicado bajo licencia [MIT](LICENSE)  
-Released under the [MIT](LICENSE) License
