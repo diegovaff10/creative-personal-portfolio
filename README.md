@@ -70,5 +70,5 @@ cd portfolio-diego-vaeff
 Multidisciplinary creator from Mendoza, Argentina  
 🎧 DJ · 🖌 Artista visual · 🧠 Frontend dev  
 
-🔗 [Portfolio Behance](https://www.behance.net/diegovaeff)  
-📧 contacto@diegoart.dev
+🔗 https://diegovaff.netlify.app/
+📧 diegoadrianvidela@gmail.com
