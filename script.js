@@ -120,7 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let currentLang = localStorage.getItem('lang') || 'es';
-    const setLanguage = (lang) => { currentLang = lang; localStorage.setItem('lang', lang); langBtn.textContent = lang.toUpperCase(); document.documentElement.lang = lang; document.querySelectorAll('[data-translate]').forEach(el => { const key = el.dataset.translate; if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; } }); document.querySelectorAll('[data-translate-html]').forEach(el => { const key = el.dataset.translateHtml; if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; } }); };
+    const setLanguage = (lang) => {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        langBtn.textContent = lang.toUpperCase();
+        document.documentElement.lang = lang;
+        langBtn.setAttribute('aria-pressed', lang === 'en');
+        langBtn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a Español');
+        document.querySelectorAll('[data-translate]').forEach(el => { const key = el.dataset.translate; if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; } });
+        document.querySelectorAll('[data-translate-html]').forEach(el => { const key = el.dataset.translateHtml; if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; } });
+    };
     langBtn.addEventListener('click', () => { const newLang = currentLang === 'es' ? 'en' : 'es'; setLanguage(newLang); });
 
     const fluidCanvas = document.getElementById('fluid-canvas'); if (fluidCanvas && !reduceMotion) {

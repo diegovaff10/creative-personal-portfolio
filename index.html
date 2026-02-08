@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="docTitle">Diego Väff - Artista y Programador</title>
+    <meta name="description"
+        content="Portfolio interactivo de Diego Väff, artista visual, diseñador UX y desarrollador front-end. Modo DEV/ART, galería, proyectos y laboratorio visual.">
+    <meta property="og:title" content="Diego Väff - Artista y Programador">
+    <meta property="og:description"
+        content="Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/img/dev-hero-section.png">
+    <meta property="og:url" content="https://diegovaff.netlify.app/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diego Väff - Artista y Programador">
+    <meta name="twitter:description"
+        content="Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.">
+    <meta name="twitter:image" content="/img/dev-hero-section.png">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
@@ -46,10 +59,11 @@
             <a href="#contact" class="nav-link" data-translate="navContact">Contacto</a>
         </nav>
         <div class="header-right">
-            <div class="language-switcher"><button id="lang-btn" class="lang-btn">ES</button></div>
+            <div class="language-switcher"><button id="lang-btn" class="lang-btn" aria-pressed="false"
+                    aria-label="Switch to English">ES</button></div>
             <div class="theme-switcher"><span class="dev-label">DEV</span><input type="checkbox"
-                    id="theme-toggle-header" class="theme-toggle-input"><label for="theme-toggle-header"
-                    class="toggle-label"></label><span class="artist-label">ART</span></div>
+                    id="theme-toggle-header" class="theme-toggle-input" aria-label="Alternar modo artista"><label
+                    for="theme-toggle-header" class="toggle-label"></label><span class="artist-label">ART</span></div>
             <i class='bx bx-menu' id="menu-btn"></i>
         </div>
     </header>
@@ -523,7 +537,8 @@
                 <div class="fusion-toggle-wrapper fade-in-element">
                     <h3 data-translate="fusionTogglePrompt">¿Ves cómo ambos mundos coexisten?</h3>
                     <div class="theme-switcher"><span class="dev-label">DEV</span><input type="checkbox"
-                            id="theme-toggle-fusion" class="theme-toggle-input"><label for="theme-toggle-fusion"
+                            id="theme-toggle-fusion" class="theme-toggle-input"
+                            aria-label="Alternar modo artista"><label for="theme-toggle-fusion"
                             class="toggle-label"></label><span class="artist-label">ART</span></div>
                 </div>
                 <div class="ai-exploration fade-in-element">
