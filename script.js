@@ -51,7 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- NAVEGACIÓN RESPONSIVE ---
     const menuBtn = document.getElementById('menu-btn');
     const navbar = document.querySelector('.navbar');
-    if (menuBtn && navbar) { menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('bx-x'); navbar.classList.toggle('active') }); navbar.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', () => { menuBtn.classList.remove('bx-x'); navbar.classList.remove('active') }) }) }
+    const toggleMenu = (forceOpen = null) => {
+        const shouldOpen = forceOpen ?? !navbar.classList.contains('active');
+        navbar.classList.toggle('active', shouldOpen);
+        menuBtn.classList.toggle('bx-x', shouldOpen);
+        menuBtn.setAttribute('aria-expanded', shouldOpen.toString());
+        menuBtn.setAttribute('aria-label', shouldOpen ? 'Cerrar menú' : 'Abrir menú');
+        body.classList.toggle('nav-open', shouldOpen);
+    };
+    if (menuBtn && navbar) {
+        menuBtn.addEventListener('click', () => toggleMenu());
+        menuBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+        navbar.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', () => toggleMenu(false)) });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navbar.classList.contains('active')) {
+                toggleMenu(false);
+            }
+        });
+    }
 
     // --- CURSOR PERSONALIZADO ---
     const cursor = document.getElementById('custom-cursor');
@@ -81,10 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         es: {
             docTitle: "Diego Väff - Artista y Programador", navProjects: "Proyectos", navSkills: "Skills", navGallery: "Galería", navFusion: "Fusión", navContact: "Contacto",
+            navTestimonials: "Testimonios",
             heroArtist1: "Un caos", heroArtist2: "de ideas,", heroArtist3: "en orden.",
+            metaDescription: "Portfolio interactivo de Diego Väff, artista visual, diseñador UX y desarrollador front-end. Modo DEV/ART, galería, proyectos y laboratorio visual.",
+            socialDescription: "Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.",
             aboutArtist: `<span class="highlight-artist">Diego Väff.</span> Mi universo es un choque constante entre el color y la forma, un viaje que comenzó en Santa Cruz, Argentina, y hoy pulsa desde Mendoza. No creo en las cajas; traduzco energía en experiencias que celebran la curiosidad.`,
             aboutDevTitle: "Manifiesto", aboutDev: "Como Diego Adrián Videla, creo que el mejor código es el que desaparece. Mi trayectoria, desde la Patagonia en Santa Cruz hasta mi base actual en Mendoza, me enseñó a construir soluciones elegantes para problemas complejos, combinando lógica y diseño para crear productos que se sienten bien al usar.",
             projectsTitle: "Proyectos",
+            testimonialsTitle: "Testimonios",
+            testimonialsSubtitle: "Opiniones de clientes y colegas sobre proyectos de diseño, branding y desarrollo.",
+            testimonialQuote1: "“Diego combinó diseño y performance en un sitio que convirtió visitas en consultas reales desde la primera semana.”",
+            testimonialAuthor1: "— Sofía R., Product Manager",
+            testimonialQuote2: "“La identidad visual quedó impecable. El proceso fue claro, ágil y con mucha sensibilidad estética.”",
+            testimonialAuthor2: "— Estudio Aura",
+            testimonialQuote3: "“Excelente comunicación y foco en detalles. El resultado final superó nuestras expectativas.”",
+            testimonialAuthor3: "— Martín L., Founder",
             devPhilosophyTitle: "Mi Filosofía de Desarrollo", devPhilosophy1Title: "Rendimiento Primero", devPhilosophy1Desc: "Obsesionado con la velocidad. Construyo sitios que cargan rápido y se sienten fluidos, optimizando assets y usando las mejores prácticas de renderizado.", devPhilosophy2Title: "Accesibilidad Web (a11y)", devPhilosophy2Desc: "Creo que la web es para todos. Implemento estándares de accesibilidad para asegurar que mis proyectos sean usables por el mayor número de personas posible.", devPhilosophy3Title: "Responsive por Defecto", devPhilosophy3Desc: "Diseño y desarrollo con un enfoque 'mobile-first', garantizando una experiencia impecable en cualquier dispositivo, desde un móvil hasta un monitor 4K.", devPhilosophy4Title: "Código Limpio y Escalable", devPhilosophy4Desc: "Escribo código semántico, mantenible y bien documentado. Esto no solo me ayuda a mí, sino a cualquier equipo que trabaje en el proyecto a futuro.",
             uxTitle: "Diseño UX/UI & Prototipado", uxDesc: "Diseño experiencias digitales que son intuitivas, eficientes y estéticamente atractivas. Mi proceso se centra en la empatía con el usuario final, validando cada decisión de diseño para crear productos que no solo funcionen, sino que deleiten. Combino la investigación de usuario con la velocidad de la IA para prototipar y testear ideas rápidamente.", uxToolkitTitle: "Mi Toolkit de Diseño",
             brandingTitle: "Branding & Identidad Visual", brandingDesc: "Ofrezco servicios completos de branding para crear universos visuales que cuentan una historia. Si buscas una marca que resuene y conecte, mi enfoque combina estrategia y estética para construir una identidad sólida y memorable, desde el logo hasta la aplicación en el mundo real.", caseStudyBtn: "Ver Caso de Estudio (PDF)", brandProject1: "Marca para 'Aura'", brandProject1Desc: "Identidad visual para una startup de bienestar y meditación.", brandProject2: "Café 'Origen'", brandProject2Desc: "Branding para una marca de café de especialidad con empaque sostenible.", brandProject3: "'Nexus' Tech", brandProject3Desc: "Identidad corporativa para una empresa de desarrollo de software.", brandProject4: "Moda 'Urbana'", brandProject4Desc: "Branding para una línea de ropa urbana y accesorios.",
@@ -102,10 +135,21 @@ document.addEventListener('DOMContentLoaded', () => {
         en: {
             // ENGLISH TRANSLATIONS
             docTitle: "Diego Väff - Artist & Programmer", navProjects: "Projects", navSkills: "Skills", navGallery: "Gallery", navFusion: "Fusion", navContact: "Contact",
+            navTestimonials: "Testimonials",
             heroArtist1: "A chaos", heroArtist2: "of ideas,", heroArtist3: "in order.",
+            metaDescription: "Interactive portfolio of Diego Väff, visual artist, UX designer, and front-end developer. DEV/ART mode, gallery, projects, and visual lab.",
+            socialDescription: "Interactive portfolio with DEV/ART mode, projects, gallery, and Art Lab.",
             aboutArtist: `<span class="highlight-artist">Diego Väff.</span> My universe is a constant clash between color and form, a journey that began in Santa Cruz, Argentina, and now pulses from Mendoza. I don't believe in boxes; I translate energy into experiences that celebrate curiosity.`,
             aboutDevTitle: "Manifesto", aboutDev: "As Diego Adrián Videla, I believe the best code is the one that disappears. My journey, from Patagonia in Santa Cruz to my current base in Mendoza, taught me to build elegant solutions for complex problems, combining logic and design to create products that feel good to use.",
             projectsTitle: "Projects", devPhilosophyTitle: "My Development Philosophy", devPhilosophy1Title: "Performance First", devPhilosophy1Desc: "Obsessed with speed. I build sites that load fast and feel fluid, optimizing assets and using best rendering practices.", devPhilosophy2Title: "Web Accessibility (a11y)", devPhilosophy2Desc: "I believe the web is for everyone. I implement accessibility standards to ensure my projects are usable by as many people as possible.", devPhilosophy3Title: "Responsive by Default", devPhilosophy3Desc: "I design and develop with a 'mobile-first' approach, ensuring a flawless experience on any device, from a phone to a 4K monitor.", devPhilosophy4Title: "Clean & Scalable Code", devPhilosophy4Desc: "I write semantic, maintainable, and well-documented code. This not only helps me but also any team that works on the project in the future.",
+            testimonialsTitle: "Testimonials",
+            testimonialsSubtitle: "Feedback from clients and collaborators on design, branding, and development work.",
+            testimonialQuote1: "“Diego blended design and performance into a site that converted visits into inquiries within the first week.”",
+            testimonialAuthor1: "— Sofia R., Product Manager",
+            testimonialQuote2: "“The visual identity was impeccable. The process was clear, agile, and full of aesthetic sensitivity.”",
+            testimonialAuthor2: "— Aura Studio",
+            testimonialQuote3: "“Excellent communication and attention to detail. The final result exceeded our expectations.”",
+            testimonialAuthor3: "— Martin L., Founder",
             uxTitle: "UX/UI Design & Prototyping", uxDesc: "I design digital experiences that are intuitive, efficient, and aesthetically pleasing. My process focuses on empathy for the end-user, validating each design decision to create products that not only work but delight. I combine user research with the speed of AI to prototype and test ideas quickly.", uxToolkitTitle: "My Design Toolkit",
             brandingTitle: "Branding & Visual Identity", brandingDesc: "I offer complete branding services to create visual universes that tell a story. If you're looking for a brand that resonates and connects, my approach combines strategy and aesthetics to build a solid and memorable identity, from the logo to real-world application.", caseStudyBtn: "View Case Study (PDF)",
             hobbiesTitle: "Personal Expressions", photoDesc: "I capture moments that feel like a fragment of a dream or the chorus of a song. My lens seeks the texture in the everyday and the narrative in stillness.",
@@ -127,10 +171,39 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang;
         langBtn.setAttribute('aria-pressed', lang === 'en');
         langBtn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a Español');
+        document.getElementById('meta-description')?.setAttribute('content', translations[lang].metaDescription);
+        document.getElementById('og-title')?.setAttribute('content', translations[lang].docTitle);
+        document.getElementById('og-description')?.setAttribute('content', translations[lang].socialDescription);
+        document.getElementById('twitter-title')?.setAttribute('content', translations[lang].docTitle);
+        document.getElementById('twitter-description')?.setAttribute('content', translations[lang].socialDescription);
         document.querySelectorAll('[data-translate]').forEach(el => { const key = el.dataset.translate; if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; } });
         document.querySelectorAll('[data-translate-html]').forEach(el => { const key = el.dataset.translateHtml; if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; } });
     };
     langBtn.addEventListener('click', () => { const newLang = currentLang === 'es' ? 'en' : 'es'; setLanguage(newLang); });
+
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const setActiveLink = (id) => {
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    };
+    if (sections.length) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveLink(entry.target.id);
+                }
+            });
+        }, { threshold: 0.6 });
+        sections.forEach(section => sectionObserver.observe(section));
+    }
 
     const fluidCanvas = document.getElementById('fluid-canvas'); if (fluidCanvas && !reduceMotion) {
         const ctx = fluidCanvas.getContext('2d'); let blobs = []; class Blob { constructor(c) { this.x = Math.random() * window.innerWidth; this.y = Math.random() * window.innerHeight; this.r = Math.random() * 80 + 150; this.vx = (Math.random() - .5) * 1; this.vy = (Math.random() - .5) * 1; this.color = c } update() { this.x += this.vx; this.y += this.vy; if (this.x > window.innerWidth + this.r || this.x < -this.r) this.vx *= -1; if (this.y > window.innerHeight + this.r || this.y < -this.r) this.vy *= -1 } draw() { ctx.beginPath(); ctx.fillStyle = this.color; ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill() } }

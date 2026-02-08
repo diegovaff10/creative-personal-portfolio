@@ -48,6 +48,10 @@ body {
     line-height: 1.8;
 }
 
+body.nav-open {
+    overflow: hidden;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -294,8 +298,17 @@ body.artist-mode #preloader-logo text {
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+}
+
+.artist-mode .nav-link.active {
+    color: var(--heading-color);
 }
 
 .artist-mode .nav-link {
@@ -307,6 +320,45 @@ body.artist-mode #preloader-logo text {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.mode-indicator .mode-label {
+    opacity: 0.7;
+}
+
+.mode-indicator .mode-value {
+    font-weight: 700;
+}
+
+.mode-indicator .mode-value-art {
+    display: none;
+}
+
+.artist-mode .mode-indicator {
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.artist-mode .mode-value-dev {
+    display: none;
+}
+
+.artist-mode .mode-value-art {
+    display: inline;
 }
 
 .language-switcher .lang-btn {
@@ -651,6 +703,35 @@ input[type="checkbox"]:checked+.toggle-label::after {
 .skill-item span {
     font-family: var(--font-heading);
     font-size: 1rem
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: 220px;
+}
+
+.testimonial-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 0.9rem;
 }
 
 /* ARTIST MODE SECTIONS */
@@ -1479,6 +1560,10 @@ input[type="checkbox"]:checked+.toggle-label::after {
 
     .hm-track {
         grid-auto-columns: 220px;
+    }
+
+    .mode-indicator {
+        display: none;
     }
 }
 

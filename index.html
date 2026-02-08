@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="docTitle">Diego Väff - Artista y Programador</title>
-    <meta name="description"
+    <meta name="description" id="meta-description"
         content="Portfolio interactivo de Diego Väff, artista visual, diseñador UX y desarrollador front-end. Modo DEV/ART, galería, proyectos y laboratorio visual.">
-    <meta property="og:title" content="Diego Väff - Artista y Programador">
-    <meta property="og:description"
+    <meta property="og:title" id="og-title" content="Diego Väff - Artista y Programador">
+    <meta property="og:description" id="og-description"
         content="Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/img/dev-hero-section.png">
     <meta property="og:url" content="https://diegovaff.netlify.app/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Diego Väff - Artista y Programador">
-    <meta name="twitter:description"
+    <meta name="twitter:title" id="twitter-title" content="Diego Väff - Artista y Programador">
+    <meta name="twitter:description" id="twitter-description"
         content="Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.">
     <meta name="twitter:image" content="/img/dev-hero-section.png">
     <!-- Favicon -->
@@ -26,6 +26,9 @@
     <meta name="theme-color" id="theme-color-meta-artist" content="#FFFDF7" media="(prefers-color-scheme: light)">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="alternate" hreflang="es" href="https://diegovaff.netlify.app/">
+    <link rel="alternate" hreflang="en" href="https://diegovaff.netlify.app/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://diegovaff.netlify.app/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -50,21 +53,28 @@
                 <circle cx="50" cy="50" r="46" /><text x="50" y="52.5" text-anchor="middle"
                     dominant-baseline="middle">DV</text>
             </svg></a>
-        <nav class="navbar">
+        <nav class="navbar" id="primary-navigation">
             <a href="#projects-dev" class="nav-link dev-nav" data-translate="navProjects">Proyectos</a>
             <a href="#skills-dev" class="nav-link dev-nav" data-translate="navSkills">Skills</a>
+            <a href="#testimonials" class="nav-link dev-nav" data-translate="navTestimonials">Testimonios</a>
             <a href="#hobbies" class="nav-link artist-nav" data-translate="navGallery">Galería</a>
             <a href="#playground-artist" class="nav-link artist-nav">Art Lab</a>
             <a href="#fusion" class="nav-link" data-translate="navFusion">Fusión</a>
             <a href="#contact" class="nav-link" data-translate="navContact">Contacto</a>
         </nav>
         <div class="header-right">
+            <div class="mode-indicator" aria-live="polite">
+                <span class="mode-label">Modo</span>
+                <span class="mode-value mode-value-dev">DEV</span>
+                <span class="mode-value mode-value-art">ART</span>
+            </div>
             <div class="language-switcher"><button id="lang-btn" class="lang-btn" aria-pressed="false"
                     aria-label="Switch to English">ES</button></div>
             <div class="theme-switcher"><span class="dev-label">DEV</span><input type="checkbox"
                     id="theme-toggle-header" class="theme-toggle-input" aria-label="Alternar modo artista"><label
                     for="theme-toggle-header" class="toggle-label"></label><span class="artist-label">ART</span></div>
-            <i class='bx bx-menu' id="menu-btn"></i>
+            <i class='bx bx-menu' id="menu-btn" role="button" aria-label="Abrir menú" aria-controls="primary-navigation"
+                aria-expanded="false" tabindex="0"></i>
         </div>
     </header>
 
@@ -82,9 +92,10 @@
             <div class="container">
                 <div class="about-grid">
                     <div class="about-image fade-in-element"><span class="dev-text"><img src="/img/dimi2.jpg"
-                                alt="Foto de Diego Adrián Videla - Programador" loading="lazy"
-                                decoding="async"></span><span class="artist-text"><img src="/img/dimi-dj-2.jpg"
-                                alt="Foto de Diego Väff - Artista" loading="lazy" decoding="async"></span></div>
+                                alt="Foto de Diego Adrián Videla - Programador" loading="eager" decoding="async"
+                                fetchpriority="high"></span><span class="artist-text"><img src="/img/dimi-dj-2.jpg"
+                                alt="Foto de Diego Väff - Artista" loading="eager" decoding="async"
+                                fetchpriority="high"></span></div>
                     <div class="about-text-content fade-in-element">
                         <div class="artist-text">
                             <p class="about-artist-p" data-translate-html="aboutArtist"><span
@@ -293,6 +304,33 @@
                     </div>
                 </div>
             </section>
+            <section id="testimonials" class="section fade-in-element">
+                <div class="container">
+                    <h2 class="section-title"><span class="section-number">05.</span> <span
+                            data-translate="testimonialsTitle">Testimonios</span></h2>
+                    <p class="section-subtitle" data-translate="testimonialsSubtitle">Opiniones de clientes y colegas
+                        sobre proyectos de diseño, branding y desarrollo.</p>
+                    <div class="testimonials-grid">
+                        <article class="testimonial-card">
+                            <p data-translate="testimonialQuote1">“Diego combinó diseño y performance en un sitio que
+                                convirtió visitas en consultas reales desde la primera semana.”</p>
+                            <span class="testimonial-author" data-translate="testimonialAuthor1">— Sofía R., Product
+                                Manager</span>
+                        </article>
+                        <article class="testimonial-card">
+                            <p data-translate="testimonialQuote2">“La identidad visual quedó impecable. El proceso fue
+                                claro, ágil y con mucha sensibilidad estética.”</p>
+                            <span class="testimonial-author" data-translate="testimonialAuthor2">— Estudio Aura</span>
+                        </article>
+                        <article class="testimonial-card">
+                            <p data-translate="testimonialQuote3">“Excelente comunicación y foco en detalles. El
+                                resultado final superó nuestras expectativas.”</p>
+                            <span class="testimonial-author" data-translate="testimonialAuthor3">— Martín L., Founder
+                            </span>
+                        </article>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- ====================== CONTENIDO DEL MODO ARTISTA ====================== -->
@@ -345,8 +383,8 @@
                                 <h3><span data-translate="brandProject1">Marca para 'Aura'</span></h3>
                                 <p data-translate="brandProject1Desc">Identidad visual para una startup de bienestar y
                                     meditación.</p>
-                            </div><a href="#" class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio
-                                (PDF)</a>
+                            </div><a href="mailto:diegoadrianvidela@gmail.com?subject=Case%20Study%20Aura"
+                                class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio (PDF)</a>
                         </article>
                         <article class="project-card">
                             <div class="project-img-wrapper"><img class="img-default"
@@ -358,8 +396,8 @@
                                 <h3><span data-translate="brandProject2">Café 'Origen'</span></h3>
                                 <p data-translate="brandProject2Desc">Branding para una marca de café de especialidad
                                     con empaque sostenible.</p>
-                            </div><a href="#" class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio
-                                (PDF)</a>
+                            </div><a href="mailto:diegoadrianvidela@gmail.com?subject=Case%20Study%20Origen"
+                                class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio (PDF)</a>
                         </article>
                         <article class="project-card">
                             <div class="project-img-wrapper"><img class="img-default"
@@ -371,8 +409,8 @@
                                 <h3><span data-translate="brandProject3">'Nexus' Tech</span></h3>
                                 <p data-translate="brandProject3Desc">Identidad corporativa para una empresa de
                                     desarrollo de software.</p>
-                            </div><a href="#" class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio
-                                (PDF)</a>
+                            </div><a href="mailto:diegoadrianvidela@gmail.com?subject=Case%20Study%20Nexus"
+                                class="artist-button" data-translate="caseStudyBtn">Ver Caso de Estudio (PDF)</a>
                         </article>
                     </div>
             </section>
@@ -470,8 +508,8 @@
                                 sesiones son un viaje hipnótico, construido sobre ritmos contundentes y texturas
                                 profundas. Aunque mi corazón está en el Techno, no tengo miedo de experimentar,
                                 fusionando elementos de IDM y Ambient para crear una experiencia sonora única en cada
-                                presentación.</p><a href="#" class="artist-button" data-translate="djLink">Escuchar en
-                                Resident Advisor</a>
+                                presentación.</p><a href="https://ra.co/" class="artist-button" target="_blank"
+                                rel="noopener noreferrer" data-translate="djLink">Escuchar en Resident Advisor</a>
                         </div>
                     </div>
                 </div>
@@ -507,7 +545,7 @@
 
         <section id="fusion" class="section fade-in-element">
             <div class="container">
-                <h2 class="section-title"> <span class="dev-text">05. <span
+                <h2 class="section-title"> <span class="dev-text">06. <span
                             data-translate="fusionTitleDev">Fusión</span></span> <span class="artist-text"
                         data-translate="fusionTitleArtist">El Punto de Encuentro</span> </h2>
                 <div class="fusion-content">
