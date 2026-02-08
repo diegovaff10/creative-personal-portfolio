@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const header = document.querySelector('.header');
     const backToTopBtn = document.getElementById('back-to-top');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --- PRELOADER ---
     const preloader = document.getElementById('preloader');
@@ -16,18 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- ANIMACIONES DE ENTRADA (IntersectionObserver) ---
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
+    if (reduceMotion) {
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            el.classList.add('is-visible');
         });
-    }, {
-        threshold: 0.1
-    });
-    document.querySelectorAll('.fade-in-element').forEach(el => {
-        observer.observe(el);
-    });
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            observer.observe(el);
+        });
+    }
 
     // --- LÓGICA DE SCROLL (Header y Botón "Volver Arriba") ---
     window.addEventListener('scroll', () => {
@@ -36,7 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > 300) { backToTopBtn.classList.add('visible'); }
         else { backToTopBtn.classList.remove('visible'); }
     });
-    backToTopBtn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
 
     // --- NAVEGACIÓN RESPONSIVE ---
     const menuBtn = document.getElementById('menu-btn');
@@ -45,7 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CURSOR PERSONALIZADO ---
     const cursor = document.getElementById('custom-cursor');
-    if (cursor) { window.addEventListener('mousemove', e => { cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)` }); document.querySelectorAll('a, button, input, .toggle-label, .project-card, .skill-item, .photo-card').forEach(el => { el.addEventListener('mouseenter', () => body.classList.add('cursor-hover')); el.addEventListener('mouseleave', () => body.classList.remove('cursor-hover')) }) }
+    if (cursor && !reduceMotion) {
+        window.addEventListener('mousemove', e => { cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)` });
+        document.querySelectorAll('a, button, input, .toggle-label, .project-card, .skill-item, .photo-card').forEach(el => { el.addEventListener('mouseenter', () => body.classList.add('cursor-hover')); el.addEventListener('mouseleave', () => body.classList.remove('cursor-hover')) })
+    }
 
     // --- SINCRONIZACIÓN DE TOGGLES ---
     const allToggles = document.querySelectorAll('.theme-toggle-input');
@@ -110,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const setLanguage = (lang) => { currentLang = lang; localStorage.setItem('lang', lang); langBtn.textContent = lang.toUpperCase(); document.documentElement.lang = lang; document.querySelectorAll('[data-translate]').forEach(el => { const key = el.dataset.translate; if (translations[lang] && translations[lang][key]) { el.textContent = translations[lang][key]; } }); document.querySelectorAll('[data-translate-html]').forEach(el => { const key = el.dataset.translateHtml; if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; } }); };
     langBtn.addEventListener('click', () => { const newLang = currentLang === 'es' ? 'en' : 'es'; setLanguage(newLang); });
 
-    const fluidCanvas = document.getElementById('fluid-canvas'); if (fluidCanvas) {
+    const fluidCanvas = document.getElementById('fluid-canvas'); if (fluidCanvas && !reduceMotion) {
         const ctx = fluidCanvas.getContext('2d'); let blobs = []; class Blob { constructor(c) { this.x = Math.random() * window.innerWidth; this.y = Math.random() * window.innerHeight; this.r = Math.random() * 80 + 150; this.vx = (Math.random() - .5) * 1; this.vy = (Math.random() - .5) * 1; this.color = c } update() { this.x += this.vx; this.y += this.vy; if (this.x > window.innerWidth + this.r || this.x < -this.r) this.vx *= -1; if (this.y > window.innerHeight + this.r || this.y < -this.r) this.vy *= -1 } draw() { ctx.beginPath(); ctx.fillStyle = this.color; ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill() } }
         function initBlobs() { const colors = ['#708D81', '#D95D39', '#F5C154', '#A9CBB7']; blobs = colors.map(c => new Blob(c)) } function animateFluid() { if (body.classList.contains('artist-mode')) { ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); blobs.forEach(blob => { blob.update(); blob.draw() }) } requestAnimationFrame(animateFluid) } const setupCanvas = () => { fluidCanvas.width = window.innerWidth; fluidCanvas.height = window.innerHeight; ctx.filter = 'blur(100px) contrast(20)' }; window.addEventListener('resize', setupCanvas); setupCanvas(); initBlobs(); animateFluid()
     }
