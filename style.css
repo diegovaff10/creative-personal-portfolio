@@ -1649,20 +1649,20 @@ input[type="checkbox"]:checked+.toggle-label::after {
   margin-top: 0.6rem;
 }
 
-.project-description {
+.project-card.dev .project-description {
   font-size: 0.85rem;
   color: #aaa;
   line-height: 1.4;
 }
 
-.project-tags {
+.project-card.dev .project-tags {
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
   margin-top: 0.4rem;
 }
 
-.project-tags span {
+.project-card.dev .project-tags span {
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border: 1px solid rgba(255,255,255,0.15);
@@ -1670,7 +1670,7 @@ input[type="checkbox"]:checked+.toggle-label::after {
   opacity: 0.8;
 }
 
-.project-link {
+.project-card.dev .project-link {
   margin-top: 0.6rem;
   font-size: 0.8rem;
   color: #fff;
@@ -1678,7 +1678,7 @@ input[type="checkbox"]:checked+.toggle-label::after {
   text-decoration: none;
 }
 
-.project-link:hover {
+.project-card.dev .project-link:hover {
   opacity: 1;
   text-decoration: underline;
 }
@@ -1803,5 +1803,60 @@ input[type="checkbox"]:checked+.toggle-label::after {
     .showcase-fashion,
     .showcase-music {
         grid-column: auto;
+    }
+}
+
+
+/* ---------- ART SECTIONS (DEV-LIKE LAYOUT) ---------- */
+.artist-profile-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.artist-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.artist-metrics-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.artist-metric-card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.artist-metric-card h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.artist-projects-grid .project-card {
+    min-height: 280px;
+}
+
+.artist-tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+@media (max-width: 900px) {
+    .artist-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-metrics-grid {
+        grid-template-columns: 1fr;
     }
 }
