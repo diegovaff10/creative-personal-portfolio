@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         es: {
             docTitle: "Diego Väff - Artista y Programador", navProjects: "Proyectos", navSkills: "Skills", navGallery: "Galería", navFusion: "Fusión", navContact: "Contacto",
             navTestimonials: "Testimonios",
-            navArtistProfile: "Perfil", navArtistProjects: "Proyectos",
+            navArtistProjects: "Proyectos",
             heroArtist1: "Un caos", heroArtist2: "de ideas,", heroArtist3: "en orden.",
             metaDescription: "Portfolio interactivo de Diego Väff, artista visual, diseñador UX y desarrollador front-end. Modo DEV/ART, galería, proyectos y laboratorio visual.",
             socialDescription: "Portfolio interactivo con modo DEV/ART, proyectos, galería y Art Lab.",
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // ENGLISH TRANSLATIONS
             docTitle: "Diego Väff - Artist & Programmer", navProjects: "Projects", navSkills: "Skills", navGallery: "Gallery", navFusion: "Fusion", navContact: "Contact",
             navTestimonials: "Testimonials",
-            navArtistProfile: "Profile", navArtistProjects: "Projects",
+            navArtistProjects: "Projects",
             heroArtist1: "A chaos", heroArtist2: "of ideas,", heroArtist3: "in order.",
             metaDescription: "Interactive portfolio of Diego Väff, visual artist, UX designer, and front-end developer. DEV/ART mode, gallery, projects, and visual lab.",
             socialDescription: "Interactive portfolio with DEV/ART mode, projects, gallery, and Art Lab.",
