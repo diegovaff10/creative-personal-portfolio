@@ -57,8 +57,8 @@
             <a href="#projects-dev" class="nav-link dev-nav" data-translate="navProjects">Proyectos</a>
             <a href="#skills-dev" class="nav-link dev-nav" data-translate="navSkills">Skills</a>
             <a href="#testimonials" class="nav-link dev-nav" data-translate="navTestimonials">Testimonios</a>
-            <a href="#artist-presentation" class="nav-link artist-nav" data-translate="navArtistProfile">Perfil</a>
             <a href="#ux-projects-artist" class="nav-link artist-nav" data-translate="navArtistProjects">Proyectos</a>
+            <a href="#artist-tools" class="nav-link artist-nav" data-translate="artistToolsTitle">Skills</a>
             <a href="#fusion" class="nav-link" data-translate="navFusion">Fusión</a>
             <a href="#contact" class="nav-link" data-translate="navContact">Contacto</a>
         </nav>
@@ -335,33 +335,7 @@
 
         <!-- ====================== CONTENIDO DEL MODO ARTISTA ====================== -->
         <div class="artist-content-wrapper">
-            <section id="artist-presentation" class="section fade-in-element">
-                <div class="container">
-                    <h2 class="section-title"><span class="section-number">04.</span> <span data-translate="artistPresentationTitle">Presentación</span></h2>
-                    <div class="artist-profile-grid">
-                        <div class="artist-profile-image">
-                            <img src="/img/dimi6.jpg" alt="Retrato artístico de Diego Väff" loading="lazy" decoding="async">
-                        </div>
-                        <div class="artist-profile-copy">
-                            <p data-translate="artistPresentationDesc">Soy Diego Väff, diseñador UX/UI y director creativo. Mi trabajo conecta estrategia, identidad visual y experiencia digital para crear productos que se sienten claros, memorables y humanos.</p>
-                            <div class="artist-metrics-grid">
-                                <article class="artist-metric-card">
-                                    <h3 data-translate="artistMetric1Title">+20</h3>
-                                    <p data-translate="artistMetric1Desc">Conceptos y propuestas visuales desarrolladas.</p>
-                                </article>
-                                <article class="artist-metric-card">
-                                    <h3 data-translate="artistMetric2Title">UX + Skills</h3>
-                                    <p data-translate="artistMetric2Desc">Procesos centrados en usuario y narrativa de marca.</p>
-                                </article>
-                                <article class="artist-metric-card">
-                                    <h3 data-translate="artistMetric3Title">End-to-End</h3>
-                                    <p data-translate="artistMetric3Desc">Desde discovery hasta prototipos listos para desarrollo.</p>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
 
             <section id="ux-projects-artist" class="section fade-in-element">
                 <div class="container">
@@ -406,30 +380,7 @@
                 </div>
             </section>
 
-            <section id="playground-artist" class="section fade-in-element art-lab-section">
-                <div class="container">
-                    <h2 data-translate="artLabTitle">Art Lab: Generador Visual</h2>
-                    <p class="section-subtitle" data-translate="artLabDesc">Un lienzo digital interactivo. Ajusta los parámetros para crear patrones únicos inspirados en la Bauhaus y observa cómo tu composición cambia en tiempo real.</p>
-                    <div class="art-playground-layout">
-                        <div class="art-canvas-wrapper">
-                            <canvas id="patternCanvas" width="900" height="900"></canvas>
-                        </div>
-                        <div class="playground-controls">
-                            <label for="grid-size-slider" data-translate="artLabGrid">Tamaño de Grilla: <span id="grid-size-value">80</span>px</label>
-                            <input type="range" id="grid-size-slider" min="40" max="140" step="10" value="80">
-                            <label for="density-slider" data-translate="artLabDensity">Densidad de Formas: <span id="density-value">90</span>%</label>
-                            <input type="range" id="density-slider" min="10" max="100" step="5" value="90">
-                            <label data-translate="artLabPalette">Paleta de Colores:</label>
-                            <div class="palette-picker">
-                                <button class="artist-button active" data-palette="classic" data-translate="artLabPaletteClassic">Clásica</button>
-                                <button class="artist-button" data-palette="portfolio">Portfolio</button>
-                            </div>
-                            <button id="regenerate-pattern-btn" class="artist-button main-action" data-translate="artLabRegenerate">Regenerar</button>
-                            <button id="download-art-btn" class="artist-button" data-translate="artLabDownload">Descargar PNG</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
         </div>
 
         <section id="fusion" class="section fade-in-element">
