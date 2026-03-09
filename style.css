@@ -48,6 +48,10 @@ body {
     line-height: 1.8;
 }
 
+body.nav-open {
+    overflow: hidden;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -136,6 +140,31 @@ img {
 .fade-in-element.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .fade-in-element {
+        opacity: 1;
+        transform: none;
+    }
+
+    .artist-mode #custom-cursor,
+    .artist-mode #fluid-canvas {
+        display: none;
+    }
 }
 
 #preloader {
@@ -269,8 +298,17 @@ body.artist-mode #preloader-logo text {
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
+}
+
+.nav-link.active {
+    color: var(--accent-color);
+}
+
+.artist-mode .nav-link.active {
+    color: var(--heading-color);
 }
 
 .artist-mode .nav-link {
@@ -282,6 +320,45 @@ body.artist-mode #preloader-logo text {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.mode-indicator .mode-label {
+    opacity: 0.7;
+}
+
+.mode-indicator .mode-value {
+    font-weight: 700;
+}
+
+.mode-indicator .mode-value-art {
+    display: none;
+}
+
+.artist-mode .mode-indicator {
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.artist-mode .mode-value-dev {
+    display: none;
+}
+
+.artist-mode .mode-value-art {
+    display: inline;
 }
 
 .language-switcher .lang-btn {
@@ -626,6 +703,35 @@ input[type="checkbox"]:checked+.toggle-label::after {
 .skill-item span {
     font-family: var(--font-heading);
     font-size: 1rem
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: 220px;
+}
+
+.testimonial-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 0.9rem;
 }
 
 /* ARTIST MODE SECTIONS */
@@ -1455,6 +1561,10 @@ input[type="checkbox"]:checked+.toggle-label::after {
     .hm-track {
         grid-auto-columns: 220px;
     }
+
+    .mode-indicator {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1539,20 +1649,20 @@ input[type="checkbox"]:checked+.toggle-label::after {
   margin-top: 0.6rem;
 }
 
-.project-description {
+.project-card.dev .project-description {
   font-size: 0.85rem;
   color: #aaa;
   line-height: 1.4;
 }
 
-.project-tags {
+.project-card.dev .project-tags {
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
   margin-top: 0.4rem;
 }
 
-.project-tags span {
+.project-card.dev .project-tags span {
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   border: 1px solid rgba(255,255,255,0.15);
@@ -1560,7 +1670,7 @@ input[type="checkbox"]:checked+.toggle-label::after {
   opacity: 0.8;
 }
 
-.project-link {
+.project-card.dev .project-link {
   margin-top: 0.6rem;
   font-size: 0.8rem;
   color: #fff;
@@ -1568,7 +1678,185 @@ input[type="checkbox"]:checked+.toggle-label::after {
   text-decoration: none;
 }
 
-.project-link:hover {
+.project-card.dev .project-link:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+/* ---------- ART REDESIGN ---------- */
+.art-redesign-intro {
+    background: linear-gradient(180deg, rgba(169, 203, 183, 0.08), transparent 70%);
+}
+
+.art-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.art-intro-copy {
+    max-width: 840px;
+}
+
+.art-pillars-grid,
+.art-services-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.art-pillar-card,
+.art-service-card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 1.4rem;
+    border-radius: 12px;
+}
+
+.art-pillar-card h3,
+.art-service-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+}
+
+.art-services-section {
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-index {
+    font-family: var(--font-heading);
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+}
+
+.art-showcase-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.showcase-card {
+    position: relative;
+    min-height: 300px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.showcase-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08));
+}
+
+.showcase-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.showcase-content {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    padding: 1.2rem;
+    color: #fff;
+}
+
+.showcase-content h3 {
+    color: #fff;
+    margin-bottom: 0.45rem;
+    font-size: 1.1rem;
+}
+
+.showcase-content p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.showcase-photo {
+    grid-column: span 5;
+}
+
+.showcase-fashion,
+.showcase-music {
+    grid-column: span 7;
+}
+
+.art-lab-section {
+    background: var(--card-bg-color);
+}
+
+@media (max-width: 900px) {
+    .art-pillars-grid,
+    .art-services-grid,
+    .art-showcase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-photo,
+    .showcase-fashion,
+    .showcase-music {
+        grid-column: auto;
+    }
+}
+
+
+/* ---------- ART SECTIONS (DEV-LIKE LAYOUT) ---------- */
+.artist-profile-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.artist-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.artist-metrics-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.artist-metric-card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.artist-metric-card h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.artist-projects-grid .project-card {
+    min-height: 280px;
+}
+
+.artist-tools-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+@media (max-width: 900px) {
+    .artist-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }
